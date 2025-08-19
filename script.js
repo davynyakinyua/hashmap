@@ -1,7 +1,7 @@
 console.log("Hashmaps");
 
 // hashing algorithm
-class Hashing {
+export class Hashing {
     constructor (loadFactor = 0.8, capacity = 16){
         this.loadFactor = loadFactor;
         this.capacity = capacity;
@@ -44,7 +44,7 @@ class Hashing {
         if(!key){
             return null;
         }
-        hash = this.hash(key);
+        let hash = this.hash(key);
 
         if(!hash in this.items) return null;
 
@@ -53,7 +53,8 @@ class Hashing {
 
     // has method checks if the key exist 
     has (key){
-        return key in this.items;
+        let hash = this.hash(key);
+        return hash in this.items;
     }
 
     // remove method to remove entry
