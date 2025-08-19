@@ -3,8 +3,10 @@ console.log("Hashmaps");
 // hashing algorithm
 class Hashing {
     constructor (){
-        let loadFactor = 0.8;
-        let capacity;
+        this.loadFactor = 0.8;
+        this.capacity = 16;
+        this.items = {};
+        this.hashedKeys = [];
     }
 
     // hashing function
@@ -15,8 +17,24 @@ class Hashing {
 
         for(let i = 0; i < key.length; i++){
             hashCode = primeNumber * hashCode + key.charCodeAt(i);
+            hashCode = hashCode % this.capacity;
         }
 
-        return hashCode;
+        return hashCode;        
     }
+
+    // altering values of keys
+    set (key, value){
+        // check for collision
+        
+        // hash the key
+        let hashedKey = this.hash(key);
+
+        // push the hash to hashKeys array
+        this.hashedKeys.push(hashedKey);
+
+        // add the hashed key and value to the items object
+         return this.items[hashedKey] = value;
+    }
+
 }
